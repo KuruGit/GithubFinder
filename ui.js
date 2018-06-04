@@ -37,8 +37,37 @@ class UI {
 
     }
 
-    clearProfile(){
-        this.profile.innerHTML="";
+    showAlert(message, className) {
+        //clear remaining alerts
+        this.clearAlert();
+        //create div
+        const div = document.createElement("div");
+        div.className = className;
+        //Add Text
+        div.appendChild(document.createTextNode(message));
+        //Get parent
+        const container = document.querySelector(".searchContainer");
+        //Get searchbox
+        const search = document.querySelector(".search");
+        //Insert alert
+        container.insertBefore(div, search);
+
+        //Timeout after 3 secs
+        setTimeout(() => {
+            this.clearAlert();
+        }, 3000);
+
+    }
+
+    clearAlert() {
+        const currentAlert = document.querySelector(".alert");
+        if (currentAlert) {
+            currentAlert.remove();
+        }
+    }
+
+    clearProfile() {
+        this.profile.innerHTML = "";
     }
 
 }
